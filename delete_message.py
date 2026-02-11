@@ -7,28 +7,24 @@ import random
 
 
 class MessageDeleter:
-    def __init__(self, fetch_content, messages_data):
-        """
-        fetch_content: The raw string of the fetch command (from RAM).
-        messages_data: The list/dict of messages returned by FetchRunner.
-        """
-        self.fetch_content = fetch_content
+    def __init__(self, messages_data, fetch_content=None, headers=None):
         self.raw_data = messages_data
-        self.headers = {}
+        self.fetch_content = fetch_content
+        self.headers = headers or {}
         self.messages_to_delete = []
 
     def run(self):
-        """Main execution method."""
         print("--- Starting Message Deletion Process ---")
 
-        # 1. Parse the headers/auth directly from the RAM string
-        if not self._parse_fetch_headers():
+        # If headers weren't passed in, try to extract them from the fetch string
+        if not self.headers and self.fetch_content:
+            self._parse_fetch_headers()
+        
+        if not self.headers:
+            print("Error: No authentication headers found.")
             return
 
-        # 2. Process the raw data into a flat list
         self._load_messages_from_memory()
-
-        # 3. Iterate and delete
         self._process_deletions()
 
     def _parse_fetch_headers(self):

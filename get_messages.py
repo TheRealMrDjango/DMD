@@ -4,27 +4,21 @@ import re
 import ast
 
 class FetchRunner:
-    def __init__(self, fetch_content):
-        """
-        fetch_content: The raw string of the fetch command (from RAM).
-        """
+    def __init__(self, fetch_content=None, url=None, headers=None):
         self.fetch_content = fetch_content
-        self.url = None
-        self.options = {}
+        self.url = url
+        self.headers = headers
+        self.options = {'headers': headers} if headers else {}
 
     def run(self):
-        """
-        Parses the command and runs the request.
-        Returns: The JSON response (dict) or None if failed.
-        """
-        if not self.fetch_content:
-            print("Error: No fetch content provided.")
-            return None
-
-        if not self._parse_fetch_command(self.fetch_content):
-            return None
-
-        # Execute and return the data directly
+        # If we weren't given a URL/Headers, try to parse the fetch string
+        if not self.url or not self.headers:
+            if not self.fetch_content:
+                print("Error: No data or fetch content provided.")
+                return None
+            if not self._parse_fetch_command(self.fetch_content):
+                return None
+        
         return self._execute_request()
 
     def _parse_fetch_command(self, content):
