@@ -34,9 +34,15 @@
 We provide standalone executables for Windows and macOS so you don't need to install Python.
 
 ### 🪟 Windows Users
-1.  Go to the **[Releases](https://github.com/TheRealMrDjango/DMD/releases)** page.
+1.  Go to the **[Release](https://github.com/TheRealMrDjango/DMD/releases/tag/v0.2.5.1_windows)** page.
 2.  Download `DMD.exe`.
 3.  Run the application directly.
+
+### 🍎 macOS Users
+1.  Go to the **[Release](https://github.com/TheRealMrDjango/DMD/releases/tag/v0.2.5.1_macOS)** page.
+2.  Download `DMD.app` (zipped).
+3.  Unzip and run the application.
+    * *Note: You may need to allow the app in System Settings > Privacy & Security if it is not signed.*
 
 ---
 
@@ -96,5 +102,6 @@ If you prefer to run the raw Python script:
 
 
 *This software is for educational purposes only. The developer is not responsible for any account bans or data loss resulting from the use of this tool. Please use responsibly.*
+
 
 
