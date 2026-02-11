@@ -1,0 +1,4 @@
+*.pyc
+gui.build/*
+gui.dist/*
+gui.app/*
