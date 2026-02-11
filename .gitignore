@@ -2,3 +2,4 @@
 gui.build/*
 gui.dist/*
 gui.app/*
+gui.zip
